@@ -18,10 +18,13 @@ import { AppStorageNightwatch } from "../libraries/AppStorageNightwatch.sol";
 contract DiamondInit {
     AppStorageNightwatch internal s;
 
-    function init(address _NightwatchCode) external {
+    function init() public {
 
         // adding ERC165 data
         LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
+
+        require(ds.supportedInterfaces[0x80ac58cd] == false, "Double Entry");
+
         ds.supportedInterfaces[type(IERC165).interfaceId] = true;
         ds.supportedInterfaces[type(IDiamondCut).interfaceId] = true;
         ds.supportedInterfaces[type(IDiamondLoupe).interfaceId] = true;

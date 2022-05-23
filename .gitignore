@@ -1,3 +1,5 @@
 hardhat/node_modules/*
 hardhat/artifacts/*
 hardhat/cache/solidity-files-cache.json
+hardhat/contracts/facets/artifacts/*
+hardhat/contracts/artifacts/*

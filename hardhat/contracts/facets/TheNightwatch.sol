@@ -218,7 +218,7 @@ contract TheNightwatch is IERC721,  IERC721Metadata, IERC2981, ModifierNightwatc
     }
 
     //Set the royalty benficiary
-    function setRoyaltyBenficiary(address _beneficiary) external onlyOwner() {
+    function setRoyaltyBeneficiary(address _beneficiary) external onlyOwner() {
         s.royaltyBeneficiary = _beneficiary;
     }
 
