@@ -46,6 +46,7 @@ contract DiamondNightwatch {
         });
         LibDiamond.diamondCut(cut, address(0), "");    
 
+   
         //Adding the initialisation layer of the diamond and executing it. Could by by passed by using calldata in previous line.
         cut = new IDiamondCut.FacetCut[](1);
         functionSelectors = new bytes4[](1);
@@ -55,8 +56,9 @@ contract DiamondNightwatch {
             action: IDiamondCut.FacetCutAction.Add, 
             functionSelectors: functionSelectors
         });
-        LibDiamond.diamondCut(cut, address(0), "");   
-        DiamondInit(address(this)).init();
+        bytes memory payload = abi.encodeWithSignature("init()", "");
+        LibDiamond.diamondCut(cut, address(this), payload);  
+ 
 
         //Adding the Nightawtch functions
         cut = new IDiamondCut.FacetCut[](1);
@@ -86,6 +88,8 @@ contract DiamondNightwatch {
             functionSelectors: functionSelectors
         });
         LibDiamond.diamondCut(cut, address(0), "");   
+
+
 
     }
 

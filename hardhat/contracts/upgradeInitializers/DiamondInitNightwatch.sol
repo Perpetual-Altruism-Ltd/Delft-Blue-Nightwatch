@@ -34,5 +34,9 @@ contract DiamondInit {
         ds.supportedInterfaces[0x5b5e139f] = true; //ERC721Metadata  support (NFT images/json)
         ds.supportedInterfaces[0x2a55205a] = true; //ERC2981 support (royalties)
 
+
+        s.name = "The Nightwatch";
+        s.symbol = "NWTCH";
+
     }
 }
