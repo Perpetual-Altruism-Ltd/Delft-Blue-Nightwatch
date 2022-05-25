@@ -3,3 +3,4 @@ hardhat/artifacts/*
 hardhat/cache/solidity-files-cache.json
 hardhat/contracts/facets/artifacts/*
 hardhat/contracts/artifacts/*
+hardhat/contracts/upgradeInitializers/artifacts/*

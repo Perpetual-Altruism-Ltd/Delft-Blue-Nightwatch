@@ -11,10 +11,10 @@ pragma solidity ^0.8.0;
 import { LibDiamond } from "./libraries/LibDiamond.sol";
 import { IDiamondCut } from "./interfaces/IDiamondCut.sol";
 
-import "./upgradeInitializers/DiamondInit.sol";
+import "./upgradeInitializers/DiamondInitNightwatch.sol";
 import "./facets/TheNightwatch.sol";
 
-contract Diamond {    
+contract DiamondNightwatch {    
 
 /* Default simplest constructor
     constructor(address _contractOwner, address _diamondCutFacet) payable {        
