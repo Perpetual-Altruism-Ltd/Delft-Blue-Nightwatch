@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-// © Copyright 2021. Patent pending. All rights reserved. Perpetual Altruism Ltd.
+// © Copyright 2022. All rights reserved. Perpetual Altruism Ltd.
 pragma solidity ^0.8.0;
 
 import "../interfaces/IERC1155.sol";
