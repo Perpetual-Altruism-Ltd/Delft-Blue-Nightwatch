@@ -50,7 +50,7 @@ contract DiamondNightwatch {
         //Adding the initialisation layer of the diamond and executing it. Could by by passed by using calldata in previous line.
         cut = new IDiamondCut.FacetCut[](1);
         functionSelectors = new bytes4[](1);
-        functionSelectors[0] = DiamondInit.init.selector;
+        functionSelectors[0] = DiamondInitNightwatch.init.selector;
         cut[0] = IDiamondCut.FacetCut({
             facetAddress: _diamondInitNightwatch, 
             action: IDiamondCut.FacetCutAction.Add, 
