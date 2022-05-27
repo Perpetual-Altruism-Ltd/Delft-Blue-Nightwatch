@@ -4,12 +4,6 @@ pragma solidity ^0.8.0;
 import {LibDiamond} from "./LibDiamond.sol";
 
 
-struct Link{
-    uint256 head;
-    uint256 tail;
-    uint256 tokenID;
-}
-
 //Struct used by the Nightwatch NFT smart contract
 struct AppStorageCoupons {
 
@@ -51,12 +45,19 @@ struct AppStorageCoupons {
     // Create a dozen different possible tokenID association. Store those on IPFS, register those dozen of link in an array. Then the uint256(blockhash) % array.length will give you wich tokenID association to use.
 
 
+    //Idea3 Implementation :
+    string[] rafflingStorage; //Will store the raffle entry
+    uint256 rafflesEntries; //Will store the total amount of raffle entries
 
+    bytes32 lockingBlockhash; //Will store the locking block previous blockhash to perform the raffle.
 
 }
 
 
 contract ModifierCoupons {
+
+    event TradingEnded(string tokenDistribution);
+
     AppStorageCoupons internal s;
 
     modifier onlyOwner() {
