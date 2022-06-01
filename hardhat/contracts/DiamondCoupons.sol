@@ -57,7 +57,7 @@ contract DiamondCoupons {
             functionSelectors: functionSelectors
         });
         bytes memory payload = abi.encodeWithSignature("init()", "");
-        LibDiamond.diamondCut(cut, address(this), payload);  
+        LibDiamond.diamondCut(cut, _diamondInitCoupons, payload);  
  
 
         //Adding the Nightawtch functions

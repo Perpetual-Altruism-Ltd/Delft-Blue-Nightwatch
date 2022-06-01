@@ -57,7 +57,7 @@ contract DiamondNightwatch {
             functionSelectors: functionSelectors
         });
         bytes memory payload = abi.encodeWithSignature("init()", "");
-        LibDiamond.diamondCut(cut, address(this), payload);  
+        LibDiamond.diamondCut(cut, _diamondInitNightwatch, payload);  
  
 
         //Adding the Nightawtch functions
