@@ -39,4 +39,9 @@ contract DiamondInitNightwatch {
         s.symbol = "NWTCH";
 
     }
+
+    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+        LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
+        return  ds.supportedInterfaces[interfaceID];
+    }
 }

@@ -33,9 +33,13 @@ contract DiamondInitCoupons {
         ds.supportedInterfaces[0x80ac58cd] = true; //ERC721 support (NFT)
         ds.supportedInterfaces[0x5b5e139f] = true; //ERC721Metadata  support (NFT images/json)
 
-
         s.name = "The Nightwatch Coupons";
         s.symbol = "XNWTCH";
 
+    }
+
+    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+        LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
+        return  ds.supportedInterfaces[interfaceID];
     }
 }

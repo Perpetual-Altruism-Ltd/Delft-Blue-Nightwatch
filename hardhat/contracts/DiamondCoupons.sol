@@ -14,7 +14,7 @@ import { IDiamondCut } from "./interfaces/IDiamondCut.sol";
 import "./upgradeInitializers/DiamondInitCoupons.sol";
 import "./facets/CouponTokens.sol";
 
-contract DiamondNightwatch {    
+contract DiamondCoupons {    
 
 /* Default simplest constructor
     constructor(address _contractOwner, address _diamondCutFacet) payable {        
