@@ -62,7 +62,7 @@ contract DiamondCoupons {
 
         //Adding the Nightawtch functions
         cut = new IDiamondCut.FacetCut[](1);
-        functionSelectors = new bytes4[](19); //Make sure the number of function match
+        functionSelectors = new bytes4[](20); //Make sure the number of function match
         functionSelectors[0] = CouponToken.balanceOf.selector;
         functionSelectors[1] = CouponToken.ownerOf.selector;
         functionSelectors[2] = bytes4(keccak256("safeTransferFrom(address,address,uint256,bytes)"));
@@ -82,6 +82,7 @@ contract DiamondCoupons {
         functionSelectors[16] = CouponToken.readRaffleOutcome.selector;
         functionSelectors[17] = CouponToken.setTokenURISufix.selector;
         functionSelectors[18] = CouponToken.readAnOutcome.selector;
+        functionSelectors[19] = CouponToken.supportsInterface.selector;
 
     
         cut[0] = IDiamondCut.FacetCut({

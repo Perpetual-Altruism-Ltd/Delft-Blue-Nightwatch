@@ -13,7 +13,7 @@ import "../libraries/LibDiamond.sol";
 /// @title TheNightwatch NFT smart contract
 /// @dev Implementation of the Nightwatch NFT smart contract. To be minted and distributed trough the owner airdropping every token independantly.
 /// @author Guillaume Gonnaud for Delft Blue
-contract TheNightwatch is IERC721,  IERC721Metadata, IERC2981, ModifierNightwatch {
+contract TheNightwatch is IERC165, IERC721,  IERC721Metadata, IERC2981, ModifierNightwatch {
 
     /// @notice Constructor
     /// @dev Bear in mind that this constructor has no effect on the actual contract deployed as you are deploying a diamond
@@ -178,6 +178,11 @@ contract TheNightwatch is IERC721,  IERC721Metadata, IERC2981, ModifierNightwatc
     /// @return royaltyAmount - the royalty payment amount for _salePrice
     function royaltyInfo(uint256 /*_tokenId */, uint256 _salePrice) external override view returns (address receiver, uint256 royaltyAmount ){
         return (s.royaltyBeneficiary, (_salePrice * s.royaltyPercentktage) / 100000);
+    }
+
+    
+    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+        return s.supportedInterfaces[interfaceID];
     }
 
     //////////////////////////////////////////////////////////////////////////////////////

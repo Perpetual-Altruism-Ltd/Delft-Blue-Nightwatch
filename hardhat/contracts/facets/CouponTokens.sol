@@ -14,7 +14,7 @@ import "../libraries/LibDiamond.sol";
 /// @title CouponTokens for the Nightwatch
 /// @dev The NFT will be tradable like normal NFT, but then at anytime 
 /// @author Guillaume Gonnaud
-contract CouponToken is IERC721,  IERC721Metadata, ModifierCoupons {
+contract CouponToken is IERC165, IERC721,  IERC721Metadata, ModifierCoupons {
 
    /// @notice Constructor
     /// @dev Bear in mind that this constructor has no effect on the actual contract deployed as you are deploying a diamond
@@ -201,11 +201,14 @@ contract CouponToken is IERC721,  IERC721Metadata, ModifierCoupons {
         return  s.rafflingStorage[_outcomeID];
     }
 
-    //Read the outco;e of the Raffle
+    //Read the outcome of the Raffle
     function readRaffleOutcome() external view returns(string memory){
         return  s.rafflingStorage[uint256(s.lockingBlockhash) % s.rafflingStorage.length];
     }
 
+    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+        return s.supportedInterfaces[interfaceID];
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////
     //                                                                                  //
