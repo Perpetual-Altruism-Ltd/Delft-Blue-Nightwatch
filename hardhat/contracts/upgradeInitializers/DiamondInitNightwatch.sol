@@ -20,20 +20,17 @@ contract DiamondInitNightwatch {
 
     function init() public {
 
-        // adding ERC165 data
-        LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
 
-        require(ds.supportedInterfaces[0x80ac58cd] == false, "Double Entry");
+        require(s.supportedInterfaces[0x80ac58cd] == false, "Double Entry");
 
-        ds.supportedInterfaces[type(IERC165).interfaceId] = true;
-        ds.supportedInterfaces[type(IDiamondCut).interfaceId] = true;
-        ds.supportedInterfaces[type(IDiamondLoupe).interfaceId] = true;
-        ds.supportedInterfaces[type(IERC173).interfaceId] = true;
+        s.supportedInterfaces[type(IERC165).interfaceId] = true;
+        s.supportedInterfaces[type(IDiamondCut).interfaceId] = true;
+        s.supportedInterfaces[type(IDiamondLoupe).interfaceId] = true;
+        s.supportedInterfaces[type(IERC173).interfaceId] = true;
 
-        ds.supportedInterfaces[0x80ac58cd] = true; //ERC721 support (NFT)
-        ds.supportedInterfaces[0x5b5e139f] = true; //ERC721Metadata  support (NFT images/json)
-        ds.supportedInterfaces[0x2a55205a] = true; //ERC2981 support (royalties)
-
+        s.supportedInterfaces[0x80ac58cd] = true; //ERC721 support (NFT)
+        s.supportedInterfaces[0x5b5e139f] = true; //ERC721Metadata  support (NFT images/json)
+        s.supportedInterfaces[0x2a55205a] = true; //ERC2981 support (royalties)
 
         s.name = "The Nightwatch";
         s.symbol = "NWTCH";

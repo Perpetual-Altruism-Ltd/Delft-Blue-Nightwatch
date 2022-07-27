@@ -206,7 +206,7 @@ contract CouponToken is IERC165, IERC721,  IERC721Metadata, ModifierCoupons {
         return  s.rafflingStorage[uint256(s.lockingBlockhash) % s.rafflingStorage.length];
     }
 
-    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+    function supportsInterface(bytes4 interfaceID) external override view returns (bool){
         return s.supportedInterfaces[interfaceID];
     }
 

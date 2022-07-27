@@ -181,7 +181,7 @@ contract TheNightwatch is IERC165, IERC721,  IERC721Metadata, IERC2981, Modifier
     }
 
     
-    function supportsInterface(bytes4 interfaceID) external view returns (bool){
+    function supportsInterface(bytes4 interfaceID) external override view returns (bool){
         return s.supportedInterfaces[interfaceID];
     }
 

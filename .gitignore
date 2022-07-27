@@ -5,3 +5,4 @@ hardhat/contracts/facets/artifacts/*
 hardhat/contracts/artifacts/*
 hardhat/contracts/upgradeInitializers/artifacts/*
 remixd.bat
+hardhat/contracts/libraries/artifacts/*
