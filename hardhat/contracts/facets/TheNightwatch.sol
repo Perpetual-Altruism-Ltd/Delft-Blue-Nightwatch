@@ -75,6 +75,18 @@ contract TheNightwatch is IERC165, IERC721,  IERC721Metadata, IERC2981, Modifier
         safeTransferFromInternal(_from, _to, _tokenId, "");
     }
 
+    /// @notice Transfers the ownership of several NFTs from one address to another address
+    /// @param _from The current owner of the NFT
+    /// @param _to The new owner
+    /// @param _initialTokenId Initial id of the NFTs to transfer
+    /// @param _finalTokenId Final id of the NFTs to transfer
+    function batchTransferFrom(uint256 _initialTokenId, uint256 _finalTokenId, address _from, address _to) external payable{
+        for(uint256 i=_initialTokenId; i<=_finalTokenId; i++) {
+            safeTransferFromInternal(_from, _to, i, "");
+        }
+    }
+
+
     /// @notice Transfer ownership of an NFT -- THE CALLER IS RESPONSIBLE
     ///  TO CONFIRM THAT `_to` IS CAPABLE OF RECEIVING NFTS OR ELSE
     ///  THEY MAY BE PERMANENTLY LOST
@@ -203,6 +215,21 @@ contract TheNightwatch is IERC165, IERC721,  IERC721Metadata, IERC2981, Modifier
 
         //Emitting transfer event
         emit Transfer(address(0x0), _receiver, _tokenID);
+    }
+
+    function batchMintFor(uint256 _initialTokenId, uint256 _finalTokenId, address _receiver, string calldata _suffix) external onlyOwner() {
+        for(uint256 i=_initialTokenId; i<=_finalTokenId; i++) {
+            s.tokenURI_suffix[i] = string(abi.encodePacked(uintToString(i), _suffix));
+            require(s.ownerOfVar[i] == address(0x0), "Token already exist");
+            s.totalSupply++;
+            s.internalBalanceOf[_receiver] = s.internalBalanceOf[_receiver] + 1;
+
+            //Changing ownership
+            s.ownerOfVar[i] = _receiver;
+
+            //Emitting transfer event
+            emit Transfer(address(0x0), _receiver, i);
+        }
     }
 
     //Every call to TokenURI will return "" + _prefix + tokenID.

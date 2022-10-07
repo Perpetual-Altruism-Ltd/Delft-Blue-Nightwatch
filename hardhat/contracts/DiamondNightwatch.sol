@@ -62,7 +62,7 @@ contract DiamondNightwatch {
 
         //Adding the Nightawtch functions
         cut = new IDiamondCut.FacetCut[](1);
-        functionSelectors = new bytes4[](19); //Make sure the number of function match
+        functionSelectors = new bytes4[](21); //Make sure the number of function match
         functionSelectors[0] = TheNightwatch.balanceOf.selector;
         functionSelectors[1] = TheNightwatch.ownerOf.selector;
         functionSelectors[2] = bytes4(keccak256("safeTransferFrom(address,address,uint256,bytes)"));
@@ -82,6 +82,8 @@ contract DiamondNightwatch {
         functionSelectors[16] = TheNightwatch.setRoyaltyRate.selector;
         functionSelectors[17] = TheNightwatch.setRoyaltyBeneficiary.selector;
         functionSelectors[18] = TheNightwatch.supportsInterface.selector;
+        functionSelectors[19] = TheNightwatch.batchMintFor.selector;
+        functionSelectors[20] = TheNightwatch.batchTransferFrom.selector;
         
         cut[0] = IDiamondCut.FacetCut({
             facetAddress: _TheNightwatch, 
