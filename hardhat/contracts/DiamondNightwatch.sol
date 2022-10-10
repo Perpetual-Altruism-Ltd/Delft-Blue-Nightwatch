@@ -33,7 +33,7 @@ contract DiamondNightwatch {
         LibDiamond.diamondCut(cut, address(0), "");        
     }
 */
-       constructor(address _contractOwner, address _diamondCutFacet, address _diamondInitNightwatch, address _TheNightwatch, address _ownerShip) payable {        
+       constructor(address _contractOwner, address _diamondCutFacet, address _diamondInitNightwatch, address _TheNightwatch, address _ownership) payable {        
         LibDiamond.setContractOwner(_contractOwner);
 
         // Add the diamondCut external function from the diamondCutFacet
@@ -66,7 +66,7 @@ contract DiamondNightwatch {
         functionSelectors[0] = OwnershipFacet.transferOwnership.selector;
         functionSelectors[1] = OwnershipFacet.owner.selector;
         cut[0] = IDiamondCut.FacetCut({
-            facetAddress: _ownerShip, 
+            facetAddress: _ownership, 
             action: IDiamondCut.FacetCutAction.Add, 
             functionSelectors: functionSelectors
         });
