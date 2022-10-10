@@ -13,6 +13,7 @@ import { IDiamondCut } from "./interfaces/IDiamondCut.sol";
 
 import "./upgradeInitializers/DiamondInitNightwatch.sol";
 import "./facets/TheNightwatch.sol";
+import "./facets/OwnershipFacet.sol";
 
 contract DiamondNightwatch {    
 
@@ -32,7 +33,7 @@ contract DiamondNightwatch {
         LibDiamond.diamondCut(cut, address(0), "");        
     }
 */
-       constructor(address _contractOwner, address _diamondCutFacet, address _diamondInitNightwatch, address _TheNightwatch) payable {        
+       constructor(address _contractOwner, address _diamondCutFacet, address _diamondInitNightwatch, address _TheNightwatch, address _ownerShip) payable {        
         LibDiamond.setContractOwner(_contractOwner);
 
         // Add the diamondCut external function from the diamondCutFacet
@@ -59,6 +60,17 @@ contract DiamondNightwatch {
         bytes memory payload = abi.encodeWithSignature("init()", "");
         LibDiamond.diamondCut(cut, _diamondInitNightwatch, payload);  
  
+         //Adding the owndership layer of the diamond and executing it. Could by by passed by using calldata in previous line.
+        cut = new IDiamondCut.FacetCut[](1);
+        functionSelectors = new bytes4[](2);
+        functionSelectors[0] = OwnershipFacet.transferOwnership.selector;
+        functionSelectors[1] = OwnershipFacet.owner.selector;
+        cut[0] = IDiamondCut.FacetCut({
+            facetAddress: _ownerShip, 
+            action: IDiamondCut.FacetCutAction.Add, 
+            functionSelectors: functionSelectors
+        });
+        LibDiamond.diamondCut(cut, address(0), "");   
 
         //Adding the Nightawtch functions
         cut = new IDiamondCut.FacetCut[](1);
